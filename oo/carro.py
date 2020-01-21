@@ -96,24 +96,20 @@ Exemplo:
     'Oeste'
 
 """
-NORTE = 'Norte'
-SUL = 'Sul'
-LESTE = 'Leste'
-OESTE = 'Oeste'
-
-
 
 class Direcao:
-    rotacao_a_direita_dct = {NORTE:LESTE, LESTE:SUL, SUL:OESTE, OESTE:NORTE}
-    rotacao_a_esquerda_dct = {NORTE:OESTE, LESTE:NORTE, SUL:LESTE, OESTE:SUL}
-
     def __init__(self):
-        self.valor = NORTE
+        self.DIRECOES = ['Norte', 'Leste', 'Sul', 'Oeste']
+        self.direcao = 0
+        self.valor = self.DIRECOES[self.direcao]
 
     def girar_a_direita(self):
-        self.valor = self.rotacao_a_direita_dct[self.valor]
+        self.direcao = (self.direcao + 1) % len(self.DIRECOES)
+        self.valor = self.DIRECOES[self.direcao]
+
     def girar_a_esquerda(self):
-        self.valor = self.rotacao_a_esquerda_dct[self.valor]
+        self.direcao = (self.direcao - 1) % len(self.DIRECOES)
+        self.valor = self.DIRECOES[self.direcao]
 
 class Motor:
 
